@@ -1,0 +1,22 @@
+#dc_admin_footer {
+  bottom: 45px;
+  text-align: center;
+}
+
+#dc_admin_footer a {
+  text-decoration: none; 
+}
+
+#dc_admin_footer img {
+  border: none; 
+  margin-right: 5px;
+  vertical-align: bottom;
+}
+
+.required {
+  color: red; 
+}
+
+.no_subscriber {
+	font-size: 14px;
+}
