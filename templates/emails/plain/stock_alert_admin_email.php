@@ -14,10 +14,21 @@ echo sprintf( __( "Hi there. A customer has subscribed a product on your shop. P
 
 echo "\n****************************************************\n\n";
 
-$wp_obj = new WC_Product( $product_id );
-$product_link = $wp_obj->get_permalink();
-$product_name = $wp_obj->get_formatted_name();
-$product_price = $wp_obj->get_price_html();
+$product_obj = wc_get_product( $product_id );
+
+if( $product_obj->is_type('variation') ) {
+	$wp_obj = new WC_Product( $product_id );
+	$parent_id = $wp_obj->get_parent();
+	$parent_obj = new WC_Product( $parent_id );
+	$product_link = $parent_obj->get_permalink();
+	$product_name = $parent_obj->get_formatted_name();
+	$product_price = $wp_obj->get_price_html();
+} else {
+	$wp_obj = new WC_Product( $product_id );
+	$product_link = $wp_obj->get_permalink();
+	$product_name = $wp_obj->get_formatted_name();
+	$product_price = $wp_obj->get_price_html();
+}
 
 echo "\n Product Name : ".$product_name;
 

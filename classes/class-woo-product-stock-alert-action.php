@@ -13,14 +13,27 @@ class WOO_Product_Stock_Alert_Action {
 				array(
 						'post_type' => 'product',
 						'post_status' => 'publish',
-						'posts_per_page' => -1
+						'numberposts' => -1
 				)
 		);
 		
 		$all_product_ids = array();
 		if( !empty($all_products) && is_array($all_products) ) {
 			foreach( $all_products as $products_each ) {
-				$all_product_ids[] = $products_each->ID;
+				$child_ids = $product_obj = array();
+				$product_obj = wc_get_product( $products_each->ID );
+				if( $product_obj->is_type('variable') ) {
+					if( $product_obj->has_child() ) {
+						$child_ids = $product_obj->get_children();
+						if( isset($child_ids) && !empty($child_ids) ) {
+							foreach( $child_ids as $child_id ) {
+								$all_product_ids[] = $child_id;
+							}
+						}
+					}
+				} else {
+					$all_product_ids[] = $products_each->ID;
+				}
 			}
 		}
 		
@@ -29,7 +42,7 @@ class WOO_Product_Stock_Alert_Action {
 			foreach( $all_product_ids as $all_product_id ) {
 				$_product_subscriber = get_post_meta($all_product_id, '_product_subscriber', true);
 				if ( $_product_subscriber && !empty($_product_subscriber) ) {
-					$get_subscribed_user[$all_product_id] = $_product_subscriber;
+					$get_subscribed_user[$all_product_id] = get_post_meta( $all_product_id, '_product_subscriber', true );
 				}
 			}
 		}
@@ -52,7 +65,6 @@ class WOO_Product_Stock_Alert_Action {
 				}
 			}
 		}
-		
 	}
 	
 }

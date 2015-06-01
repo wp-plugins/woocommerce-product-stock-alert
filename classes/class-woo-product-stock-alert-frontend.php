@@ -30,6 +30,7 @@ class WOO_Product_Stock_Alert_Frontend {
 	
 	function subscribe_for_interest($availability_html, $availability, $product) {
 		$user_email = '';
+		$stock_interest = '';
 		
 		if ( !$product->is_in_stock() ) {
 			if( is_user_logged_in() ) {
