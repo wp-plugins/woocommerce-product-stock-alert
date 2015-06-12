@@ -1,5 +1,17 @@
 jQuery(document).ready(function($) {
 	$(window).bind('woocommerce_variation_has_changed', function() {
+	  $('.alert_container').css('display', 'none');
+	  var child_data = {
+	  	action: 'alert_box_ajax',
+	  	child_id: $('.variation_id').val()
+	  };
+	  $.post(woocommerce_params.ajax_url, child_data, function(response) {
+	  	if( response == 'outofstock' ) {
+	  		$('.alert_container').css('display', 'block');
+	  	} else if( response == 'instock' ) {
+	  		$('.alert_container').css('display', 'none');
+	  	}
+	  });
 	  initStockAlertVariation();
 	});
 	initStockAlert();
@@ -11,9 +23,9 @@ jQuery(document).ready(function($) {
 			pro_title = $(this).parent().find('.current_product_name').val();
 			if( cus_email && validateEmail(cus_email) ) {
 				var stock_alert = {
-					action : 'alert_ajax',
-					email : cus_email,
-					product_id : pro_id
+					action: 'alert_ajax',
+					email: cus_email,
+					product_id: pro_id
 				}
 				$.post(woocommerce_params.ajax_url, stock_alert, function(response) {
 						

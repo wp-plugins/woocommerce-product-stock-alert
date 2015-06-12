@@ -8,9 +8,11 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+global $WOO_Product_Stock_Alert;
+
 echo $email_heading . "\n\n";
 
-echo sprintf( __( "Hi there. You have subscribed a product. Your product details are shown below for your reference:", 'woocommerce' ) ) . "\n\n";
+echo sprintf( __( "Hi there. You have subscribed a product. Your subscribed product is available now. Product details are shown below for your reference:", $WOO_Product_Stock_Alert->text_domain ) ) . "\n\n";
 
 echo "\n****************************************************\n\n";
 

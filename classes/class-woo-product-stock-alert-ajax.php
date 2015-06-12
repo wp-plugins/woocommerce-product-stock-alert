@@ -6,6 +6,10 @@ class WOO_Product_Stock_Alert_Ajax {
 		// Save customer email in database
 		add_action( 'wp_ajax_alert_ajax', array(&$this, 'stock_alert_function') );
 		add_action( 'wp_ajax_nopriv_alert_ajax', array(&$this, 'stock_alert_function') );
+		
+		// Show Alert Box for Out of Stock Product
+		add_action( 'wp_ajax_alert_box_ajax', array(&$this, 'alert_box_function') );
+		add_action( 'wp_ajax_nopriv_alert_box_ajax', array(&$this, 'alert_box_function') );
 	}
 	
 	function stock_alert_function() {
@@ -40,6 +44,17 @@ class WOO_Product_Stock_Alert_Ajax {
 		}
 		
 		echo $status;
+		
+		die();
+	}
+	
+	
+	function alert_box_function() {
+		
+		$child_id = $_POST['child_id'];
+		
+		$product_availability_status = get_post_meta( $child_id, '_stock_status', true );
+		echo $product_availability_status;
 		
 		die();
 	}

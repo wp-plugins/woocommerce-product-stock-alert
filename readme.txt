@@ -4,7 +4,7 @@ Donate link: http://www.dualcube.com
 Tags: wordpress, woocommerce, e-commerce, shop, stock, out of stock, in stock, stock alert, alert email
 Requires at least: 3.6
 Tested up to: 4.2.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,8 @@ WooCommerce Product Stock Alert plugin helps prospective buyers of a product to 
 Suppose, a customer wants to buy a product from your Woostore and the product is out of stock. It is very difficult for the customer to check each time whether the product becomes available. So here is a solution. Using this plugin, a customer can subscribe the product by their email address. Now when the product becomes available, an alert email will be sent to each interested customer automatically within few hours and customer can buy the product easily. The alert email contains current product price and a direct link to the product.
 This plugin also helps admin. When a customer subscribe any out of stock product on your Woostore, an alert email will be sent to admin with customer details and interested product. Now admin can view numbers of interested customers for any out of stock product from admin panel and easily decide number of stocks needed.
 So, this plugin will make your Woostore more than a store.
+
+For more details : [Click Here](http://plugins.dualcube.com/product/woocommerce-product-stock-alert/)
 
 = Features =
 *   WooCommerce Product Stock Alert Plugin creates a text input box with an out of stock product. Interested customers can register with their email address. 
@@ -65,6 +67,9 @@ Yes, this plugin is compatible with all latest version of WooCommerce themes.
 10. An email sent to the customer when the product becomes available
 
 == Changelog ==
+= 1.0.2 =
+*   Fixed minor bug and compatible with latest WooCommerce
+
 = 1.0.1 =
 *   Fixed some issue and now plugin is working with Variable product.
 
@@ -73,6 +78,9 @@ Yes, this plugin is compatible with all latest version of WooCommerce themes.
 
 
 == Upgrade Notice ==
+= 1.0.2 =
+*   Fixed minor bug and compatible with latest WooCommerce
+
 = 1.0.1 =
 *   Fixed some issue and now plugin is working with Variable product.
 

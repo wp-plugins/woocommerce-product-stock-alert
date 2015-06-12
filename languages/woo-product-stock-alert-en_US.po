@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Product Stock Alert\n"
-"POT-Creation-Date: 2015-06-02 16:23+0530\n"
-"PO-Revision-Date: 2015-06-02 16:23+0530\n"
+"POT-Creation-Date: 2015-06-12 19:10+0530\n"
+"PO-Revision-Date: 2015-06-12 19:10+0530\n"
 "Last-Translator: Dualcube <admin@dualcube.com>\n"
 "Language-Team: Dualcube <admin@dualcube.com>\n"
 "Language: en_US\n"
@@ -14,33 +14,33 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /woocommerce-product-stock-alert\n"
 
-#: /woocommerce-product-stock-alert/templates/emails/stock_alert_admin_email.php:13
-#: /woocommerce-product-stock-alert/templates/emails/plain/stock_alert_admin_email.php:13
+#: /woocommerce-product-stock-alert/templates/emails/stock_alert_admin_email.php:16
+#: /woocommerce-product-stock-alert/templates/emails/plain/stock_alert_admin_email.php:15
 msgid ""
 "Hi there. A customer has subscribed a product on your shop. Product details "
 "are shown below for your reference:"
 msgstr ""
 
-#: /woocommerce-product-stock-alert/templates/emails/stock_alert_admin_email.php:36
-#: /woocommerce-product-stock-alert/templates/emails/stock_alert_email.php:36
+#: /woocommerce-product-stock-alert/templates/emails/stock_alert_admin_email.php:39
+#: /woocommerce-product-stock-alert/templates/emails/stock_alert_email.php:39
 msgid "Product"
 msgstr ""
 
-#: /woocommerce-product-stock-alert/templates/emails/stock_alert_admin_email.php:37
-#: /woocommerce-product-stock-alert/templates/emails/stock_alert_email.php:37
+#: /woocommerce-product-stock-alert/templates/emails/stock_alert_admin_email.php:40
+#: /woocommerce-product-stock-alert/templates/emails/stock_alert_email.php:40
 msgid "Price"
 msgstr ""
 
-#: /woocommerce-product-stock-alert/templates/emails/stock_alert_admin_email.php:48
-#: /woocommerce-product-stock-alert/templates/emails/stock_alert_email.php:48
+#: /woocommerce-product-stock-alert/templates/emails/stock_alert_admin_email.php:51
+#: /woocommerce-product-stock-alert/templates/emails/stock_alert_email.php:51
 msgid "Following is the product link : "
 msgstr ""
 
-#: /woocommerce-product-stock-alert/templates/emails/stock_alert_email.php:13
-#: /woocommerce-product-stock-alert/templates/emails/plain/stock_alert_email.php:13
+#: /woocommerce-product-stock-alert/templates/emails/stock_alert_email.php:16
+#: /woocommerce-product-stock-alert/templates/emails/plain/stock_alert_email.php:15
 msgid ""
-"Hi there. You have subscribed a product. Your product details are shown "
-"below for your reference:"
+"Hi there. You have subscribed a product. Your subscribed product is "
+"available now. Product details are shown below for your reference:"
 msgstr ""
 
 #: /woocommerce-product-stock-alert/classes/class-woo-product-stock-alert-admin.php:24
@@ -51,15 +51,23 @@ msgstr ""
 msgid "Dualcube"
 msgstr ""
 
-#: /woocommerce-product-stock-alert/classes/class-woo-product-stock-alert-admin.php:109
+#: /woocommerce-product-stock-alert/classes/class-woo-product-stock-alert-admin.php:56
+msgid "Number of Interested Person(s)"
+msgstr ""
+
+#: /woocommerce-product-stock-alert/classes/class-woo-product-stock-alert-admin.php:63
+msgid "Number of Interested Person"
+msgstr ""
+
+#: /woocommerce-product-stock-alert/classes/class-woo-product-stock-alert-admin.php:78
 msgid "Interested Person(s)"
 msgstr ""
 
-#: /woocommerce-product-stock-alert/classes/class-woo-product-stock-alert-admin.php:170
+#: /woocommerce-product-stock-alert/classes/class-woo-product-stock-alert-admin.php:140
 msgid "Number of Interested Person(s) : "
 msgstr ""
 
-#: /woocommerce-product-stock-alert/classes/class-woo-product-stock-alert-admin.php:177
+#: /woocommerce-product-stock-alert/classes/class-woo-product-stock-alert-admin.php:147
 msgid "Number of Interested Person : "
 msgstr ""
 

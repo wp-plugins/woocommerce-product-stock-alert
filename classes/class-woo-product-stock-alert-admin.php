@@ -41,7 +41,7 @@ class WOO_Product_Stock_Alert_Admin {
 	 * Stock Alert news
 	 */
 	function product_subscriber_details() {
-		global $post;
+		global $post, $WOO_Product_Stock_Alert;
 		$no_of_subscriber = 0;
 		
 		$product_obj = wc_get_product( $post->ID );
@@ -53,51 +53,20 @@ class WOO_Product_Stock_Alert_Admin {
 					$no_of_subscriber = count($product_subscriber);
 					?>
 						<p class="form-field _stock_field">
-							<label class="">Number of Interested Person(s)</label>
+							<label class=""><?php __( 'Number of Interested Person(s)', $WOO_Product_Stock_Alert->text_domain ); ?></label>
 							<span class="no_subscriber"><?php echo $no_of_subscriber; ?></span>
 						</p>
 					<?php
 				} else {
 					?>
 						<p class="form-field _stock_field">
-							<label class="">Number of Interested Person</label>
+							<label class=""><?php __( 'Number of Interested Person', $WOO_Product_Stock_Alert->text_domain ); ?></label>
 							<span class="no_subscriber_zero">0</span>
 						</p>
 					<?php
 				}
 			}
 		}
-		/* else {
-			$post_obj = new WC_Product_Variable( $post->ID );
-			$child_ids = $post_obj->get_children();
-			foreach( $child_ids as $child_id ) {
-				$product_availability_status = get_post_meta( $child_id, '_stock_status', true );
-				if( $product_availability_status == 'outofstock' ) {
-					$product_subscriber = get_post_meta( $child_id, '_product_subscriber', true );
-					if( !empty($product_subscriber) ) {
-						$no_of_subscriber = $no_of_subscriber + count($product_subscriber);
-					}
-				}
-			}
-			$product_availability_status = get_post_meta( $post->ID, '_stock_status', true );
-			if( $product_availability_status == 'outofstock' ) {
-				if( $no_of_subscriber > 0 ) {
-					?>
-						<p class="form-field _stock_field">
-							<label>Number of Interested Person(s)</label>
-							<span class="no_subscriber"><?php echo $no_of_subscriber; ?></span>
-						</p>
-					<?php
-				} else {
-					?>
-						<p class="form-field _stock_field">
-							<label>Number of Interested Person</label>
-							<span class="no_subscriber">0</span>
-						</p>
-					<?php
-				}
-			}
-		} */
 		
 	}
 	
@@ -105,8 +74,8 @@ class WOO_Product_Stock_Alert_Admin {
 	 * Custom column addition
 	 */
 	function custom_column($columns) {
-		
-		return array_merge($columns, array( 'product_subscriber' =>__( 'Interested Person(s)')) );
+		global $WOO_Product_Stock_Alert;
+		return array_merge($columns, array( 'product_subscriber' =>__( 'Interested Person(s)', $WOO_Product_Stock_Alert->text_domain)) );
 	}
 	
 	/**
@@ -160,6 +129,7 @@ class WOO_Product_Stock_Alert_Admin {
 	}
 	
 	function manage_variation_custom_column( $loop, $variation_data, $variation ) {
+		global $WOO_Product_Stock_Alert;
 		$variation_id = $variation->ID;
 		$product_availability_status = get_post_meta( $variation_id, '_stock_status', true );
 		if( $product_availability_status == 'outofstock' ) {
@@ -167,14 +137,14 @@ class WOO_Product_Stock_Alert_Admin {
 			if( !empty($product_subscriber) ) {
 				?>
 					<p class="form-row form-row-full interested_person">
-						<label class="stock_label"><?php _e( 'Number of Interested Person(s) : ', 'woocommerce' ); ?></label>
+						<label class="stock_label"><?php _e( 'Number of Interested Person(s) : ', $WOO_Product_Stock_Alert->text_domain ); ?></label>
 						<div class="variation_no_subscriber"><?php echo count($product_subscriber); ?></div>
 					</p>
 				<?php
 			} else {
 				?>
 					<p class="form-row form-row-full interested_person">
-						<label class="stock_label"><?php _e( 'Number of Interested Person : ', 'woocommerce' ); ?></label>
+						<label class="stock_label"><?php _e( 'Number of Interested Person : ', $WOO_Product_Stock_Alert->text_domain ); ?></label>
 						<div class="variation_no_subscriber_zero">0</div>
 					</p>
 				<?php

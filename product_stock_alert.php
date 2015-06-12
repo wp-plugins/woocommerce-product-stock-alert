@@ -4,7 +4,7 @@ Plugin Name: WooCommerce Product Stock Alert
 Plugin URI: http://dualcube.com
 Description: Woocommerce plugin using which a customer can subscribe for interest on an out of stock product. When the product becomes available, subscribed customer will get an alert email.
 Author: Aveek Kr. Saha, Arim Ghosh, Dualcube
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://dualcube.com
 */
 

@@ -7,10 +7,13 @@
  * @version   2.3.8
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
-<?php do_action( 'woocommerce_email_header', $email_heading ); ?>
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-<p><?php printf( __( "Hi there. A customer has subscribed a product on your shop. Product details are shown below for your reference:", 'woocommerce' ) );
+global $WOO_Product_Stock_Alert;
+
+do_action( 'woocommerce_email_header', $email_heading ); ?>
+
+<p><?php printf( __( "Hi there. A customer has subscribed a product on your shop. Product details are shown below for your reference:", $WOO_Product_Stock_Alert->text_domain ) );
 
 $product_obj = wc_get_product( $product_id );
 
