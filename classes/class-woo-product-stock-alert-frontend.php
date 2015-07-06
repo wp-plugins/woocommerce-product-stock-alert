@@ -1,37 +1,100 @@
 <?php
 class WOO_Product_Stock_Alert_Frontend {
+	private $dc_plugin_settings;
 
 	public function __construct() {
+		// Get plugin settings
+		$this->dc_plugin_settings = get_dc_plugin_settings();
+		
 		//enqueue scripts
 		add_action('wp_enqueue_scripts', array(&$this, 'frontend_scripts'));
 		//enqueue styles
 		add_action('wp_enqueue_scripts', array(&$this, 'frontend_styles'));
-
-		//HTML for getting customer email
-		add_action( 'woocommerce_single_product_summary', array($this, 'get_alert_textbox'), 30 );
+		
+		if( isset($this->dc_plugin_settings) && !empty($this->dc_plugin_settings) ) {
+			if( isset($this->dc_plugin_settings['is_enable']) && $this->dc_plugin_settings['is_enable'] == 'Enable' ) {
+				// Hover style
+				add_action( 'wp_head', array($this, 'frontend_style') );
+		
+				//HTML for getting customer email
+				add_action( 'woocommerce_single_product_summary', array($this, 'get_alert_form'), 30 );
+			}
+		}
 	}
 	
-	function get_alert_textbox() {
+	function frontend_style() {
+		$dc_settings = array();
+		$button_background_color_onhover = $button_text_color_onhover = '';
+		
+		$dc_settings = $this->dc_plugin_settings;
+		if( isset($dc_settings) && !empty($dc_settings) ) {
+			$button_background_color_onhover = !empty($dc_settings['button_background_color_onhover']) ? $dc_settings['button_background_color_onhover'] : '';
+			$button_text_color_onhover = !empty($dc_settings['button_text_color_onhover']) ? $dc_settings['button_text_color_onhover'] : '';
+			$button_border_color_onhover = !empty($dc_settings['button_border_color_onhover']) ? $dc_settings['button_border_color_onhover'] : '';
+		}
+		
+		echo '<style>
+			input[type="button"].alert_button_hover:hover {
+				background: '.$button_background_color_onhover.' !important;
+				color: '.$button_text_color_onhover.' !important;
+				border-color: '.$button_border_color_onhover.' !important;
+			}
+		</style>';
+	}
+	
+	function get_alert_form() {
 		global $product;
-		$stock_interest = '';
+		$stock_interest = $alert_text_html = $button_html = '';
+		$dc_settings = array();
+		$alert_text = $button_text = $button_background_color = $button_border_color = $button_text_color = '';
+		
+		$dc_settings = $this->dc_plugin_settings;
+		if( isset($dc_settings) && !empty($dc_settings) ) {
+			$alert_text = !empty($dc_settings['alert_text']) ? $dc_settings['alert_text'] : 'Get an alert when the product is in stock:';
+			$alert_text_color = !empty($dc_settings['alert_text_color']) ? $dc_settings['alert_text_color'] : '';
+			$button_text = !empty($dc_settings['button_text']) ? $dc_settings['button_text'] : 'Get an alert';
+			$button_background_color = !empty($dc_settings['button_background_color']) ? $dc_settings['button_background_color'] : '';
+			$button_border_color = !empty($dc_settings['button_border_color']) ? $dc_settings['button_border_color'] : '';
+			$button_text_color = !empty($dc_settings['button_text_color']) ? $dc_settings['button_text_color'] : '';
+			$button_background_color_onhover = !empty($dc_settings['button_background_color_onhover']) ? $dc_settings['button_background_color_onhover'] : '';
+			$button_text_color_onhover = !empty($dc_settings['button_text_color_onhover']) ? $dc_settings['button_text_color_onhover'] : '';
+			$button_border_color_onhover = !empty($dc_settings['button_border_color_onhover']) ? $dc_settings['button_border_color_onhover'] : '';
+		} else {
+			$alert_text = 'Get an alert when the product is in stock:';
+			$button_text = 'Get an alert';
+		}
+		
+		if( !empty($alert_text) ) {
+			$alert_text_html = '<h6 style="color:'.$alert_text_color.'" class="subscribe_for_interest_text">'.$alert_text.'</h6>';
+		} else {
+			$alert_text_html = '<h6 class="subscribe_for_interest_text">'.$alert_text.'</h6>';
+		}
+		
+		if( !empty($button_background_color) && !empty($button_border_color) && !empty($button_text_color) && !empty($button_background_color_onhover) && !empty($button_text_color_onhover) && !empty($button_border_color_onhover) ) {
+			$button_html = '<input type="button" style="background: '.$button_background_color.'; color: '.$button_text_color.'; border-color: '.$button_border_color.'" class="stock_alert_button alert_button_hover" name="alert_button" value="'.$button_text.'" />';
+		} else {
+			$button_html = '<input type="button" class="stock_alert_button" name="alert_button" value="'.$button_text.'" />';
+		}
+		
+		
 		
 		if( $product->is_type('simple') ) {
-			if ( !$product->is_in_stock() ) {
+			if ( $this->display_stock_alert_form($product) ) {
 				if( is_user_logged_in() ) {
 					$current_user = wp_get_current_user();
 					$user_email = $current_user->data->user_email;
 					$stock_interest = ' <div class="alert_container">
-																<h6 class="subscribe_for_interest_text">Get an alert when the product is in stock:</h6>
+																'.$alert_text_html.'
 																<input type="text" class="stock_alert_email" name="alert_email" value="'.$user_email.'" />
-																<input type="button" class="stock_alert_button" name="alert_button" value="Get an alert" />
+																'.$button_html.'
 																<input type="hidden" class="current_product_id" value="'.$product->id.'" />
 																<input type="hidden" class="current_product_name" value="'.$product->post->post_title.'" />
 															</div> ';
 				} else {
 					$stock_interest = ' <div class="alert_container">
-																<h6 class="subscribe_for_interest_text">Get an alert when the product is in stock:</h6>
+																'.$alert_text_html.'
 																<input type="text" class="stock_alert_email" name="alert_email" />
-																<input type="button" class="stock_alert_button" name="alert_button" value="Get an alert" />
+																'.$button_html.'
 																<input type="hidden" class="current_product_id" value="'.$product->id.'" />
 																<input type="hidden" class="current_product_name" value="'.$product->post->post_title.'" />
 															</div> ';
@@ -39,16 +102,14 @@ class WOO_Product_Stock_Alert_Frontend {
 			}
 		} else if( $product->is_type('variable') ) {
 			$flag = 0;
-			$child_out_of_stock = array();
 			$child_ids = array();
 			if( $product->children ) {
 				$child_ids = $product->children;
 				if( isset($child_ids) && !empty($child_ids) ) {
 					foreach( $child_ids as $child_id ) {
-						$product_availability_status = get_post_meta( $child_id, '_stock_status', true );
-						if( $product_availability_status == 'outofstock' ) {
+						$child_obj = new WC_Product_Variation($child_id);
+						if( $this->display_stock_alert_form($child_obj) ) {
 							$flag = 1;
-							$child_out_of_stock[] = $child_id;
 						}
 					}
 				}
@@ -59,21 +120,19 @@ class WOO_Product_Stock_Alert_Frontend {
 					$current_user = wp_get_current_user();
 					$user_email = $current_user->data->user_email;
 					$stock_interest = ' <div class="alert_container">
-																<h6 class="subscribe_for_interest_text">Get an alert when the product is in stock:</h6>
+																'.$alert_text_html.'
 																<input type="text" class="stock_alert_email" name="alert_email" value="'.$user_email.'" />
-																<input type="button" class="stock_alert_button" name="alert_button" value="Get an alert" />
+																'.$button_html.'
 																<input type="hidden" class="current_product_id" value="'.$product->id.'" />
 																<input type="hidden" class="current_product_name" value="'.$product->post->post_title.'" />
-																<input type="hidden" class="dc_variation_id" value="" />
 															</div> ';
 				} else {
 					$stock_interest = ' <div class="alert_container">
-																<h6 class="subscribe_for_interest_text">Get an alert when the product is in stock:</h6>
+																'.$alert_text_html.'
 																<input type="text" class="stock_alert_email" name="alert_email" />
-																<input type="button" class="stock_alert_button" name="alert_button" value="Get an alert" />
+																'.$button_html.'
 																<input type="hidden" class="current_product_id" value="'.$product->id.'" />
 																<input type="hidden" class="current_product_name" value="'.$product->post->post_title.'" />
-																<input type="hidden" class="dc_variation_id" value="" />
 															</div> ';
 				}
 			}
@@ -98,6 +157,27 @@ class WOO_Product_Stock_Alert_Frontend {
 
 		// Enqueue your frontend stylesheet from here
 		wp_enqueue_style('frontend_css', $frontend_style_path.'frontend.css', array(), $WOO_Product_Stock_Alert->version);
+	}
+	
+	function display_stock_alert_form($product) {
+		$display_stock_alert_form = false;
+		$dc_settings = $this->dc_plugin_settings;
+		if( isset($dc_settings['is_enable_backorders']) && $dc_settings['is_enable_backorders'] == 'Enable' ) {
+			if($product->is_type('simple')) {
+				$stock_status = get_post_meta( $product->id, '_stock_status', true );
+			} else if($product->is_type('variation')) {
+				$stock_status = get_post_meta( $product->variation_id, '_stock_status', true );
+			}
+			if( $stock_status == 'outofstock' ) {
+				$display_stock_alert_form = true;
+			}
+		} else {
+			if( !$product->is_in_stock() ) {
+				$display_stock_alert_form = true;
+			}
+		}
+		
+		return $display_stock_alert_form;
 	}
 	
 }

@@ -1,40 +1,47 @@
 === WooCommerce Product Stock Alert ===
-Contributors: aveek, arimghosh, Dualcube
+
+Contributors: Dualcube, arimghosh, aveek
 Donate link: http://www.dualcube.com
 Tags: wordpress, woocommerce, e-commerce, shop, stock, out of stock, in stock, stock alert, alert email
+
 Requires at least: 3.6
 Tested up to: 4.2.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-All new WordPress WooCommerce plugin by which customer will get email alert when their subscribed product becomes available and admin can check number of customers interested on any out of stock product.
+Alert your customer when a product of her choice is available again. 
 
 == Description ==
-WooCommerce Product Stock Alert plugin helps prospective buyers of a product to subscribe the product when it is out of stock. Interested customers will get email notificaation when the product becomes available. This plugin helps admin also, admin can view number of interested customers for any out of stock product.
-Suppose, a customer wants to buy a product from your Woostore and the product is out of stock. It is very difficult for the customer to check each time whether the product becomes available. So here is a solution. Using this plugin, a customer can subscribe the product by their email address. Now when the product becomes available, an alert email will be sent to each interested customer automatically within few hours and customer can buy the product easily. The alert email contains current product price and a direct link to the product.
-This plugin also helps admin. When a customer subscribe any out of stock product on your Woostore, an alert email will be sent to admin with customer details and interested product. Now admin can view numbers of interested customers for any out of stock product from admin panel and easily decide number of stocks needed.
-So, this plugin will make your Woostore more than a store.
-
+Never miss a sale now. This plugin lets prospective buyers subscribe to a product when it is out of stock. Once subscribed, customers will get email notification when the product becomes available. On the admin side - you may view number of interested customers for any out of stock product.
+ 
 For more details : [Click Here](http://plugins.dualcube.com/product/woocommerce-product-stock-alert/)
 
 = Features =
-*   WooCommerce Product Stock Alert Plugin creates a text input box with an out of stock product. Interested customers can register with their email address. 
+
+*   WooCommerce Product Stock Alert Plugin creates a form with an out of stock product. Interested customers can register with their email address. 
 *   When a customer subscribe any out of stock product on your site, an email will be sent to admin with customer email id and interested product.
 *   This plugin also creates a field to the inventory of edit product page to show number of interested persons. This will let you decide how many stock you want to add further.
 *   As soon as the product becomes available, an alert email will be sent to the interested persons.
 *   This is an extremely light-weight plugin; it doesn't hamper the speed of your website and ensures smooth transition.
-*   This killer plugin is easy to set up, use and install. You need not be a coding or developing expert to understand how the plugin works. Just install and let it do the rest. However you can customize email heading, email subject which will be sent to customers from WooCommerce settings.
+*   This killer plugin is easy to set up, use and install. You need not be a coding or developing expert to understand how the plugin works. Just install and let it do the rest.
+*   You can customize the form heading message, button text, color, hover color from plugin settings page.
+*   You can customize email heading, email subject which will be sent to customers from WooCommerce email settings.
+*   WooCommerce Product Stock Alert Plugin will work if product Backorder option is enabled.
 
 = Compatibility =
 *   WordPress 3.6 or later
 *   WooCommerce 2.2 or greater
 *   Multilingual Support is included with the plugin and is fully compatible with WPML.
 
+
+
 = Configurable =
+
 WooCommerce Product Stock Alert has provided customizable email structure. Admin can customize email Header as well as email Subject from WooCommerce settings panel.
 
 = Feedback =
+
 Thanks heaps for trying this plugin. I hope it could serve your purpose. If you find this plugin is helpful, appreciate us by giving a 5/5 star and feel free to comment as well as suggest additional features. If you find the plugin is buggy, please do mention the reason and we will add or change options and fix bugs. For more information and instructions on this plugin please visit www.dualcube.com. 
 
 == Installation ==
@@ -65,10 +72,17 @@ Yes, this plugin is compatible with all latest version of WooCommerce themes.
 8. Individual product edit page for variable product when no customer is interested
 9. Individual product edit page for variable product with number of interested persons
 10. An email sent to the customer when the product becomes available
+11. Plugin settings to customize stock alert form
+12. A customized stock alert form
 
 == Changelog ==
+= 1.0.3 =
+*   Plugin settings panel is added to customize stock alert form.
+*   Now alert email will be send as soon as product becomes in-stock.
+*   Now plugin will work with Backorders.
+
 = 1.0.2 =
-*   Fixed minor bug and compatible with latest WooCommerce
+*   Fixed minor bug and compatible with latest WooCommerce.
 
 = 1.0.1 =
 *   Fixed some issue and now plugin is working with Variable product.
@@ -78,13 +92,16 @@ Yes, this plugin is compatible with all latest version of WooCommerce themes.
 
 
 == Upgrade Notice ==
+= 1.0.3 =
+*   Plugin settings panel is added to customize stock alert form.
+*   Now alert email will be send as soon as product becomes in-stock.
+*   Now plugin will work with Backorders.
+
 = 1.0.2 =
-*   Fixed minor bug and compatible with latest WooCommerce
+*   Fixed minor bug and compatible with latest WooCommerce.
 
 = 1.0.1 =
 *   Fixed some issue and now plugin is working with Variable product.
 
 = 1.0.0 =
-*   Initial release
-
-
+*   Initial release.

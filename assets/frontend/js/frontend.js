@@ -6,9 +6,9 @@ jQuery(document).ready(function($) {
 	  	child_id: $('.variation_id').val()
 	  };
 	  $.post(woocommerce_params.ajax_url, child_data, function(response) {
-	  	if( response == 'outofstock' ) {
+	  	if( response == 'true' ) {
 	  		$('.alert_container').css('display', 'block');
-	  	} else if( response == 'instock' ) {
+	  	} else if( response == 'false' ) {
 	  		$('.alert_container').css('display', 'none');
 	  	}
 	  });

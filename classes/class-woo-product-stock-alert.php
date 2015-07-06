@@ -40,6 +40,10 @@ class WOO_Product_Stock_Alert {
 		// Init Text Domain
 		$this->load_plugin_textdomain();
 		
+		// Init library
+		$this->load_class('library');
+		$this->library = new WOO_Product_Stock_Alert_Library();
+		
 		// Init ajax
 		if(defined('DOING_AJAX')) {
       $this->load_class('ajax');
@@ -55,6 +59,9 @@ class WOO_Product_Stock_Alert {
 			$this->load_class('frontend');
 			$this->frontend = new WOO_Product_Stock_Alert_Frontend();
 		}
+		
+		// DC Wp Fields
+		$this->dc_wp_fields = $this->library->load_wp_fields();
 
 	}
 	

@@ -10,4 +10,15 @@ if(!function_exists('woocommerce_inactive_notice')) {
   }
 }
 
+if(!function_exists('get_dc_plugin_settings')) {
+	function get_dc_plugin_settings() {
+		$dc_plugin_settings = array();
+		$dc_plugin_settings = get_option( 'dc_woo_product_stock_alert_general_settings_name' );
+		if( isset($dc_plugin_settings) && !empty($dc_plugin_settings) ) {
+			return $dc_plugin_settings;
+		}
+		return array();
+	}
+}
+
 ?>

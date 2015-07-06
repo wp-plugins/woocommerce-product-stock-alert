@@ -3,8 +3,8 @@
 Plugin Name: WooCommerce Product Stock Alert
 Plugin URI: http://dualcube.com
 Description: Woocommerce plugin using which a customer can subscribe for interest on an out of stock product. When the product becomes available, subscribed customer will get an alert email.
-Author: Aveek Kr. Saha, Arim Ghosh, Dualcube
-Version: 1.0.2
+Author: Dualcube, Arim Ghosh, Aveek Kr. Saha
+Version: 1.0.3
 Author URI: http://dualcube.com
 */
 
@@ -20,6 +20,14 @@ if(!WC_Dependencies_Stock_Alert::woocommerce_plugin_active_check()) {
   add_action( 'admin_notices', 'woocommerce_inactive_notice' );
 }
 
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'woo_product_stock_alert_settings' );
+function woo_product_stock_alert_settings( $links ) {
+	$plugin_links = array(
+			'<a href="' . admin_url( 'admin.php?page=woo-product-stock-alert-setting-admin' ) . '">' . __( 'Settings', WOO_PRODUCT_STOCK_ALERT_TEXT_DOMAIN ) . '</a>',
+			'<a href="http://dualcube.com/">' . __( 'Support', WOO_PRODUCT_STOCK_ALERT_TEXT_DOMAIN ) . '</a>'
+	);	
+	return array_merge( $plugin_links, $links );
+}
 
 if(!class_exists('WOO_Product_Stock_Alert')) {
 	require_once( 'classes/class-woo-product-stock-alert.php' );
