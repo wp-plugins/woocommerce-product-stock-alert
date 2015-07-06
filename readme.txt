@@ -47,8 +47,9 @@ Thanks heaps for trying this plugin. I hope it could serve your purpose. If you 
 == Installation ==
 1.  Upload your plugin folder to the '/wp-content/plugins' directory.
 2.  Activate the plugin through the 'Plugins' menu in WordPress.
-3.  Customize email heading, email subject from WooCommerce email settings.
-4.  All done. Just wait and watch how many customers are interested with an out of stock product of your Woostore.
+3.  Goto plugin settings and "Enable Stock Alert".
+4.  Customize email heading, email subject from WooCommerce email settings.
+5.  All done. Just wait and watch how many customers are interested with an out of stock product of your Woostore.
 
 == Frequently Asked Questions ==
 = Does this plugin work with newest WP version and also older versions? =
