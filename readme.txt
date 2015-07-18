@@ -6,7 +6,7 @@ Tags: wordpress, woocommerce, e-commerce, shop, stock, out of stock, in stock, s
 
 Requires at least: 3.6
 Tested up to: 4.2.2
-Stable tag: 1.0.3
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,7 +35,6 @@ For more details : [Click Here](http://plugins.dualcube.com/product/woocommerce-
 *   Multilingual Support is included with the plugin and is fully compatible with WPML.
 
 
-
 = Configurable =
 
 WooCommerce Product Stock Alert has provided customizable email structure. Admin can customize email Header as well as email Subject from WooCommerce settings panel.
@@ -61,6 +60,8 @@ Yes, this plugin is compatible with WooCommerce 2.2 or later.
 = Does this plugin work with all types of theme =
 Yes, this plugin is compatible with all latest version of WooCommerce themes.
 
+= Does this plugin work with WooCommerce Subscription Product =
+Yes, this plugin works with WooCommerce Subscription Product.
 
 == Screenshots ==
 1. Stock alert admin email settings panel
@@ -77,6 +78,10 @@ Yes, this plugin is compatible with all latest version of WooCommerce themes.
 12. A customized stock alert form
 
 == Changelog ==
+= 1.1.0 =
+*   Works with "WooCommerce Subscription Products".
+*   Now this plugin works with Backorders even "in-stock" is selected.
+
 = 1.0.3 =
 *   Plugin settings panel is added to customize stock alert form.
 *   Now alert email will be send as soon as product becomes in-stock.
@@ -93,6 +98,10 @@ Yes, this plugin is compatible with all latest version of WooCommerce themes.
 
 
 == Upgrade Notice ==
+= 1.1.0 =
+*   Works with "WooCommerce Subscription Products".
+*   Now this plugin works with Backorders even "in-stock" is selected.
+
 = 1.0.3 =
 *   Plugin settings panel is added to customize stock alert form.
 *   Now alert email will be send as soon as product becomes in-stock.

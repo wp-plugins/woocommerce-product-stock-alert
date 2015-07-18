@@ -23,13 +23,12 @@ if( $product_obj->is_type('variation') ) {
 	$parent_id = $wp_obj->get_parent();
 	$parent_obj = new WC_Product( $parent_id );
 	$product_link = $parent_obj->get_permalink();
-	$product_name = $parent_obj->get_formatted_name();
-	$product_price = $wp_obj->get_price_html();
+	$product_name = $wp_obj->post->post_title;
+	$product_price = $product_obj->get_price_html();
 } else {
-	$wp_obj = new WC_Product( $product_id );
-	$product_link = $wp_obj->get_permalink();
-	$product_name = $wp_obj->get_formatted_name();
-	$product_price = $wp_obj->get_price_html();
+	$product_link = $product_obj->get_permalink();
+	$product_name = $product_obj->get_formatted_name();
+	$product_price = $product_obj->get_price_html();
 }
 
 echo "\n Product Name : ".$product_name;

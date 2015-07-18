@@ -55,20 +55,20 @@ class WOO_Product_Stock_Alert_Ajax {
 		$display_stock_alert_form = 'false';
 		
 		if( $child_id && !empty($child_id) ) {
-		$child_obj = new WC_Product_Variation($child_id);
+			$child_obj = new WC_Product_Variation($child_id);
 			$dc_settings = get_dc_plugin_settings();
-			if( isset($dc_settings['is_enable_backorders']) && $dc_settings['is_enable_backorders'] == 'Enable' ) {
-				$stock_status = get_post_meta( $child_id, '_stock_status', true );
-				if( $stock_status == 'outofstock' ) {
-					$display_stock_alert_form = 'true';
-				}
-			} else {
-				if( !$child_obj->is_in_stock() ) {
+			$stock_quantity = get_post_meta( $child_id, '_stock', true );
+			if( $stock_quantity <= 0 ) {
+				if( $child_obj->backorders_allowed() ) {
+					if( isset($dc_settings['is_enable_backorders']) && $dc_settings['is_enable_backorders'] == 'Enable' ) {
+						$display_stock_alert_form = 'true';
+					}
+				} else {
 					$display_stock_alert_form = 'true';
 				}
 			}
 		}
-		
+			
 		echo $display_stock_alert_form;
 		
 		die();

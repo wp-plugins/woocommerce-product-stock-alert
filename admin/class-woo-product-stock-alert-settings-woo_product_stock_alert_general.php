@@ -109,7 +109,6 @@ class WOO_Product_Stock_Alert_Settings_Gneral {
    */
   public function basic_settings_info() {
     global $WOO_Product_Stock_Alert;
-    _e('', $WOO_Product_Stock_Alert->text_domain);
   }
 
   /** 

@@ -136,9 +136,51 @@ class WOO_Product_Stock_Alert_Frontend {
 															</div> ';
 				}
 			}
+		} else if( $product->is_type('subscription') ) {
+			if ( $this->display_stock_alert_form($product) ) {
+				if( is_user_logged_in() ) {
+					$current_user = wp_get_current_user();
+					$user_email = $current_user->data->user_email;
+					$stock_interest = ' <div class="alert_container">
+																'.$alert_text_html.'
+																<input type="text" class="stock_alert_email" name="alert_email" value="'.$user_email.'" />
+																'.$button_html.'
+																<input type="hidden" class="current_product_id" value="'.$product->id.'" />
+																<input type="hidden" class="current_product_name" value="'.$product->post->post_title.'" />
+															</div> ';
+				} else {
+					$stock_interest = ' <div class="alert_container">
+																'.$alert_text_html.'
+																<input type="text" class="stock_alert_email" name="alert_email" />
+																'.$button_html.'
+																<input type="hidden" class="current_product_id" value="'.$product->id.'" />
+																<input type="hidden" class="current_product_name" value="'.$product->post->post_title.'" />
+															</div> ';
+				}
+			}
+		} else {
+			if ( $this->display_stock_alert_form($product) ) {
+				if( is_user_logged_in() ) {
+					$current_user = wp_get_current_user();
+					$user_email = $current_user->data->user_email;
+					$stock_interest = ' <div class="alert_container">
+																'.$alert_text_html.'
+																<input type="text" class="stock_alert_email" name="alert_email" value="'.$user_email.'" />
+																'.$button_html.'
+																<input type="hidden" class="current_product_id" value="'.$product->id.'" />
+																<input type="hidden" class="current_product_name" value="'.$product->post->post_title.'" />
+															</div> ';
+				} else {
+					$stock_interest = ' <div class="alert_container">
+																'.$alert_text_html.'
+																<input type="text" class="stock_alert_email" name="alert_email" />
+																'.$button_html.'
+																<input type="hidden" class="current_product_id" value="'.$product->id.'" />
+																<input type="hidden" class="current_product_name" value="'.$product->post->post_title.'" />
+															</div> ';
+				}
+			}
 		}
-		
-		
 		
 		echo $stock_interest;
 	}
@@ -162,18 +204,25 @@ class WOO_Product_Stock_Alert_Frontend {
 	function display_stock_alert_form($product) {
 		$display_stock_alert_form = false;
 		$dc_settings = $this->dc_plugin_settings;
-		if( isset($dc_settings['is_enable_backorders']) && $dc_settings['is_enable_backorders'] == 'Enable' ) {
+		
+		if( isset($product) && !empty($product) ) {
 			if($product->is_type('simple')) {
-				$stock_status = get_post_meta( $product->id, '_stock_status', true );
+				$stock_quantity = get_post_meta( $product->id, '_stock', true );
 			} else if($product->is_type('variation')) {
-				$stock_status = get_post_meta( $product->variation_id, '_stock_status', true );
+				$stock_quantity = get_post_meta( $product->variation_id, '_stock', true );
+			} else if($product->is_type('subscription')) {
+				$stock_quantity = get_post_meta( $product->id, '_stock', true );
+			} else {
+				$stock_quantity = get_post_meta( $product->id, '_stock', true );
 			}
-			if( $stock_status == 'outofstock' ) {
-				$display_stock_alert_form = true;
-			}
-		} else {
-			if( !$product->is_in_stock() ) {
-				$display_stock_alert_form = true;
+			if( $stock_quantity <= 0 ) {
+				if( $product->backorders_allowed() ) {
+					if( isset($dc_settings['is_enable_backorders']) && $dc_settings['is_enable_backorders'] == 'Enable' ) {
+						$display_stock_alert_form = true;
+					}
+				} else {
+					$display_stock_alert_form = true;
+				}
 			}
 		}
 		
