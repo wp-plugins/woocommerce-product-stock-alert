@@ -1,0 +1,16 @@
+.alert_container {
+	margin-bottom: 20px;
+}
+
+.stock_alert_email {
+	margin-bottom: 10px;
+	width: 250px;
+}
+
+h6.subscribe_for_interest_text {
+	margin-bottom: 5px;
+}
+
+.alert_container_bk {
+	display: none;
+}
