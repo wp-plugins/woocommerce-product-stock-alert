@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+	var register_html;
 	$(window).bind('woocommerce_variation_has_changed', function() {
 	  $('.alert_container').css('display', 'none');
 	  var child_data = {
@@ -21,6 +22,7 @@ jQuery(document).ready(function($) {
 			cus_email = $(this).parent().find('.stock_alert_email').val();
 			pro_id = $(this).parent().find('.current_product_id').val();
 			pro_title = $(this).parent().find('.current_product_name').val();
+			var register_box = $('.alert_container').html();
 			if( cus_email && validateEmail(cus_email) ) {
 				var stock_alert = {
 					action: 'alert_ajax',
@@ -30,15 +32,15 @@ jQuery(document).ready(function($) {
 				$.post(woocommerce_params.ajax_url, stock_alert, function(response) {
 						
 					if( response == '0' ) {
-						$('.stock_alert_button').parent().html('<div class="registered_message">Some error occurs, Please <a href="'+window.location+'">Try again</a></div>');
+						$('.alert_container').html('<div class="registered_message">Some error occurs, Please <a href="'+window.location+'">Try again</a></div>');
 					} else if( response == '/*?%already_registered%?*/' ) {
-						$('.stock_alert_button').parent().html('<div class="registered_message"><b>'+cus_email+'</b> is already registered with '+pro_title+'. Please <a href="'+window.location+'">Try again</a></div>');
+						$('.alert_container').html('<div class="registered_message"><b>'+cus_email+'</b> is already registered with '+pro_title+'. Please <a href="'+window.location+'">Try again</a></div>');
 					} else {
-						$('.stock_alert_button').parent().html('<div class="registered_message">Thank you for your interest in <b>'+pro_title+'</b>, you will receive an <b>email alert</b> when it becomes available.</div>');
+						$('.alert_container').html('<div class="registered_message">Thank you for your interest in <b>'+pro_title+'</b>, you will receive an <b>email alert</b> when it becomes available.</div>');
 					}
 				});
 			} else {
-				$('.stock_alert_button').parent().html('<div class="registered_message">Please enter a <b>valid email id</b> and <a href="'+window.location+'">Try again</a></div>');
+				$('.alert_container').html('<div class="registered_message">Please enter a <b>valid email id</b> and <a href="'+window.location+'">Try again</a></div>');
 			}
 		});
 	}
@@ -48,6 +50,7 @@ jQuery(document).ready(function($) {
 			cus_email = $(this).parent().find('.stock_alert_email').val();
 			variation_id = $(this).parent().parent().parent().find('.variation_id').val();
 			pro_title = $(this).parent().find('.current_product_name').val();
+			register_html = $('.alert_container').html();
 			if( cus_email && validateEmail(cus_email) ) {
 				var stock_alert = {
 					action : 'alert_ajax',
@@ -57,15 +60,15 @@ jQuery(document).ready(function($) {
 				$.post(woocommerce_params.ajax_url, stock_alert, function(response) {
 						
 					if( response == '0' ) {
-						$('.stock_alert_button').parent().html('<div class="registered_message">Some error occurs, Please <a href="'+window.location+'">Try again</a></div>');
+						$('.alert_container').html('<div class="registered_message">Some error occurs, Please <a href="'+window.location+'">Try again</a></div>');
 					} else if( response == '/*?%already_registered%?*/' ) {
-						$('.stock_alert_button').parent().html('<div class="registered_message"><b>'+cus_email+'</b> is already registered with '+pro_title+'. Please <a href="'+window.location+'">Try again</a></div>');
+						$('.alert_container').html('<div class="registered_message"><b>'+cus_email+'</b> is already registered with '+pro_title+'. Please <a href="'+window.location+'">Try again</a></div>');
 					} else {
-						$('.stock_alert_button').parent().html('<div class="registered_message">Thank you for your interest in <b>'+pro_title+'</b>, you will receive an <b>email alert</b> when it becomes available.</div>');
+						$('.alert_container').html('<div class="registered_message">Thank you for your interest in <b>'+pro_title+'</b>, you will receive an <b>email alert</b> when it becomes available.</div>');
 					}
 				});
 			} else {
-				$('.stock_alert_button').parent().html('<div class="registered_message">Please enter a <b>valid email id</b> and <a href="'+window.location+'">Try again</a></div>');
+				$('.alert_container').html('<div class="registered_message">Please enter a <b>valid email id</b> and <a href="'+window.location+'">Try again</a></div>');
 			}
 		});
 	}

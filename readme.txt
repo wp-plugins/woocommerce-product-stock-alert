@@ -2,11 +2,11 @@
 
 Contributors: Dualcube, arimghosh, aveek
 Donate link: http://www.dualcube.com
-Tags: wordpress, woocommerce, e-commerce, shop, stock, out of stock, in stock, stock alert, alert email
+Tags: wordpress, woocommerce, e-commerce, shop, stock, out of stock, in stock, stock alert, alert email, stock alert email
 
 Requires at least: 3.6
-Tested up to: 4.2.2
-Stable tag: 1.1.0
+Tested up to: 4.2.3
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,8 +14,6 @@ Alert your customer when a product of her choice is available again.
 
 == Description ==
 Never miss a sale now. This plugin lets prospective buyers subscribe to a product when it is out of stock. Once subscribed, customers will get email notification when the product becomes available. On the admin side - you may view number of interested customers for any out of stock product.
- 
-For more details : [Click Here](http://plugins.dualcube.com/product/woocommerce-product-stock-alert/)
 
 = Features =
 
@@ -78,6 +76,10 @@ Yes, this plugin works with WooCommerce Subscription Product.
 12. A customized stock alert form
 
 == Changelog ==
+= 1.1.1 =
+*   Stock alert form will be displayed on backorder product properly.
+*   Sending alert email automatically when backorder is enabled and in-stock is selected issue has been resolved.
+
 = 1.1.0 =
 *   Works with "WooCommerce Subscription Products".
 *   Now this plugin works with Backorders even "in-stock" is selected.
@@ -98,6 +100,10 @@ Yes, this plugin works with WooCommerce Subscription Product.
 
 
 == Upgrade Notice ==
+= 1.1.1 =
+*   Stock alert form will be displayed on backorder product properly.
+*   Sending alert email automatically when backorder is enabled and in-stock is selected issue has been resolved.
+
 = 1.1.0 =
 *   Works with "WooCommerce Subscription Products".
 *   Now this plugin works with Backorders even "in-stock" is selected.

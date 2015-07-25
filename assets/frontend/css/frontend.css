@@ -10,3 +10,7 @@
 h6.subscribe_for_interest_text {
 	margin-bottom: 5px;
 }
+
+.alert_container_bk {
+	display: none;
+}

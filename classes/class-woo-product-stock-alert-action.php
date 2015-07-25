@@ -53,8 +53,10 @@ class WOO_Product_Stock_Alert_Action {
 		if( !empty($get_subscribed_user) && is_array($get_subscribed_user) ) {
 			foreach( $get_subscribed_user as $id => $subscriber ) {
 				
-				$product_availability_status = get_post_meta( $id, '_stock_status', true );
-				if( $product_availability_status == 'instock' ) {
+				$product_availability_stock = get_post_meta( $id, '_stock', true );
+				$manage_stock = get_post_meta( $id, '_manage_stock', true );
+				if( isset($product_availability_stock) && $manage_stock == 'yes' )
+				if( $product_availability_stock > 0 ) {
 				
 					$email = WC()->mailer()->emails['WC_Email_Stock_Alert'];
 					foreach( $subscriber as $to ) {
