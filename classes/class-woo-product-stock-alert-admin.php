@@ -89,9 +89,11 @@ class WOO_Product_Stock_Alert_Admin {
 					$child_ids = $product_obj->get_children();
 					if( isset($child_ids) && !empty($child_ids) ) {
 						foreach( $child_ids as $child_id ) {
-							$product_availability_stock = intval( get_post_meta( $child_id, '_stock', true ) );
-							$manage_stock = get_post_meta( $child_id, '_manage_stock', true );
-							if( isset($product_availability_stock) && $manage_stock == 'yes' ) {
+							$product                    = wc_get_product( $child_id );
+							$product_availability_stock = $product->get_stock_quantity();
+							$manage_stock               = $product->managing_stock();
+
+							if( isset($product_availability_stock) && $manage_stock) {
 								if( $product_availability_stock <= 0 ) {
 									$index = 1;
 									$product_subscriber = get_post_meta( $child_id, '_product_subscriber', true );
@@ -110,9 +112,11 @@ class WOO_Product_Stock_Alert_Admin {
 						}
 					}
 				} else {
-					$product_availability_stock = intval( get_post_meta( $post_id, '_stock', true ) );
-					$manage_stock = get_post_meta( $post_id, '_manage_stock', true );
-					if( isset($product_availability_stock) && $manage_stock == 'yes' ) {
+					$product                    = wc_get_product( $post_id );
+					$product_availability_stock = $product->get_stock_quantity();
+					$manage_stock               = $product->managing_stock();
+
+					if( isset($product_availability_stock) && $manage_stock ) {
 						if( $product_availability_stock <= 0 ) {
 							$product_subscriber = get_post_meta( $post_id, '_product_subscriber', true );
 							if( !empty($product_subscriber) ) {
@@ -138,9 +142,10 @@ class WOO_Product_Stock_Alert_Admin {
 		
 		$product_obj = wc_get_product( $post->ID );
 		if( !$product_obj->is_type('variable') ) {
-			$product_availability_stock = intval( get_post_meta( $post->ID, '_stock', true ) );
-			$manage_stock = get_post_meta( $post->ID, '_manage_stock', true );
-			if( isset($product_availability_stock) && $manage_stock == 'yes' ) {
+			$product_availability_stock = $product_obj->get_stock_quantity();
+			$manage_stock               = $product_obj->managing_stock();
+
+			if( isset($product_availability_stock) && $manage_stock ) {
 				if( $product_availability_stock <= 0 ) {
 					$product_subscriber = get_post_meta( $post->ID, '_product_subscriber', true );
 					if( !empty( $product_subscriber ) ) {
@@ -170,9 +175,10 @@ class WOO_Product_Stock_Alert_Admin {
 	function manage_variation_custom_column( $loop, $variation_data, $variation ) {
 		global $WOO_Product_Stock_Alert;
 		$variation_id = $variation->ID;
-		$product_availability_stock = intval( get_post_meta( $variation_id, '_stock', true ) );
-		$manage_stock = get_post_meta( $variation_id, '_manage_stock', true );
-		if( isset($product_availability_stock) && $manage_stock == 'yes' ) {
+		$product_availability_stock = $variation->get_stock_quantity();
+		$manage_stock               = $variation->managing_stock();
+
+		if( isset($product_availability_stock) && $manage_stock ) {
 			if( $product_availability_stock <= 0 ) {
 				$product_subscriber = get_post_meta( $variation_id, '_product_subscriber', true );
 				if( !empty($product_subscriber) ) {
@@ -211,9 +217,11 @@ class WOO_Product_Stock_Alert_Admin {
 					foreach( $child_ids as $child_id ) {
 						$product_subscriber = get_post_meta($child_id, '_product_subscriber', true);
 						if( isset($product_subscriber) && !empty($product_subscriber) ) {
-							$product_availability_stock = get_post_meta( $child_id, '_stock', true );
-							$manage_stock = get_post_meta( $child_id, '_manage_stock', true );
-							if( isset($product_availability_stock) && $manage_stock == 'yes' ) {
+							$product                    = wc_get_product( $child_id );
+							$product_availability_stock = $product->get_stock_quantity();
+							$manage_stock               = $product->managing_stock();
+
+							if( isset($product_availability_stock) && $manage_stock ) {
 								if( $product_availability_stock > 0 ) {
 									$email = WC()->mailer()->emails['WC_Email_Stock_Alert'];
 									foreach( $product_subscriber as $to ) {
@@ -229,9 +237,11 @@ class WOO_Product_Stock_Alert_Admin {
 		} else {
 			$product_subscriber = get_post_meta($post_id, '_product_subscriber', true);
 			if( isset($product_subscriber) && !empty($product_subscriber) ) {
-				$product_availability_stock = get_post_meta( $post_id, '_stock', true );
-				$manage_stock = get_post_meta( $post_id, '_manage_stock', true );
-				if( isset($product_availability_stock) && $manage_stock == 'yes' ) {
+				$product                    = wc_get_product( $post_id );
+				$product_availability_stock = $product->get_stock_quantity();
+				$manage_stock               = $product->managing_stock();
+
+				if( isset($product_availability_stock) && $manage_stock ) {
 					if( $product_availability_stock > 0 ) {
 						$email = WC()->mailer()->emails['WC_Email_Stock_Alert'];
 						foreach( $product_subscriber as $to ) {

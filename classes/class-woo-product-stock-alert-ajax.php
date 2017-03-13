@@ -57,9 +57,10 @@ class WOO_Product_Stock_Alert_Ajax {
 		if( $child_id && !empty($child_id) ) {
 			$child_obj = new WC_Product_Variation($child_id);
 			$dc_settings = get_dc_plugin_settings();
-			$stock_quantity = get_post_meta( $child_id, '_stock', true );
-			$manage_stock = get_post_meta( $child_id, '_manage_stock', true );
-			if( isset($stock_quantity) && $manage_stock == 'yes' ) {
+			$stock_quantity = $child_obj->get_stock_quantity();
+			$manage_stock   = $child_obj->managing_stock();
+
+			if( isset($stock_quantity) && $manage_stock ) {
 				if( $stock_quantity <= 0 ) {
 					if( $child_obj->backorders_allowed() ) {
 						if( isset($dc_settings['is_enable_backorders']) && $dc_settings['is_enable_backorders'] == 'Enable' ) {
