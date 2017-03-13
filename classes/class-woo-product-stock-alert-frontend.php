@@ -151,19 +151,19 @@ class WOO_Product_Stock_Alert_Frontend {
 		
 		if( isset($product) && !empty($product) ) {
 			if($product->is_type('simple')) {
-				$stock_quantity = get_post_meta( $product->id, '_stock', true );
-				$manage_stock = get_post_meta( $product->id, '_manage_stock', true );
+				$stock_quantity = $product->get_stock_quantity();
+				$manage_stock   = $product->managing_stock();
 			} else if($product->is_type('variation')) {
 				$stock_quantity = get_post_meta( $product->variation_id, '_stock', true );
 				$manage_stock = get_post_meta( $product->variation_id, '_manage_stock', true );
 			} else if($product->is_type('subscription')) {
-				$stock_quantity = get_post_meta( $product->id, '_stock', true );
-				$manage_stock = get_post_meta( $product->id, '_manage_stock', true );
+				$stock_quantity = $product->get_stock_quantity();
+				$manage_stock   = $product->managing_stock();
 			} else {
-				$stock_quantity = get_post_meta( $product->id, '_stock', true );
-				$manage_stock = get_post_meta( $product->id, '_manage_stock', true );
+				$stock_quantity = $product->get_stock_quantity();
+				$manage_stock   = $product->managing_stock();
 			}
-			if( isset($stock_quantity) && $manage_stock == 'yes' ) {
+			if( isset($stock_quantity) && $manage_stock ) {
 				if( $stock_quantity <= 0 ) {
 					if( $product->backorders_allowed() ) {
 						if( isset($dc_settings['is_enable_backorders']) && $dc_settings['is_enable_backorders'] == 'Enable' ) {
